@@ -1,42 +1,38 @@
+import { Routes, Route} from "react-router-dom";
 import "./App.css";
-import logo from "./logo.png";
+import { VideosProvider } from "./Context/videoContext";
+import Home from "./Pages/Home/Home";
+import Trending from "./Pages/Home/Trending";
+import History from "./Pages/Home/History";
+import Playlist from "./Pages/Home/Playlist";
+import WatchLater from "./Pages/Home/WatchLater";
+import VideoPage from "./Pages/Home/VideoPage";
+import See_Playlist from "./Pages/Home/See_Playlist";
+import { Login } from "./Pages/Login";
+import { Signup } from "./Pages/Signup";
+import { Logout } from "./Pages/Logout";
+import { AuthProvider } from "./Context/authContext";
 
 function App() {
   return (
+    <AuthProvider>
+    <VideosProvider>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} alt="mockBee logo" width="180" height="180" />
-        <h1 className="brand-title">
-          Welcome to <span>mockBee!</span>
-        </h1>
-        <p className="brand-description">
-          Get started by editing <code>src/App.js</code>
-        </p>
-        <div className="links">
-          <a
-            href="https://mockbee.netlify.app/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Explore mockBee
-          </a>
-          <a
-            href="https://mockbee.netlify.app/docs/api/introduction"
-            target="_blank"
-            rel="noreferrer"
-          >
-            API Documentation
-          </a>
-          <a
-            href="https://github.com/neogcamp/mockBee"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Contribute
-          </a>
-        </div>
-      </header>
+    <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/trending" element={<Trending />} />
+        <Route path="/history" element={<History />} />
+        <Route path="/playlist" element={<Playlist />} />
+        <Route path="/watchlater" element={<WatchLater />} />
+        <Route path="/videopage" element={<VideoPage />} />
+        <Route path="/playlistpage" element={<See_Playlist />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/logout" element={<Logout />} />
+      </Routes>
     </div>
+    </VideosProvider>
+    </AuthProvider>
   );
 }
 
